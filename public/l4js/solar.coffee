@@ -2,8 +2,8 @@ class AstronomicalObject
   #mass relative to Earth, 1EM = 5.97 * 10e24 kg
   #dia km
   #dist in AU from SUN as semi-major axis  --  1AU = 149.6*10e6 km
-  @scale = 1/4000
-  @AU = 149600000
+  scale = 1/4000
+  AU = 149600000
   constructor: (options) ->
     {@name, @mass, @dia, @dst, @gravity} = options
 
@@ -12,12 +12,12 @@ class AstronomicalObject
 
     ctx.fillStyle = "black";
     ctx.beginPath();
-    ctx.arc(center[0], center[1], @dia/scale/2, 0, Math.PI*2, true);
+    ctx.arc(center[0], center[1], @dia/@scale/2, 0, Math.PI*2, true);
     ctx.closePath();
     ctx.fill();
 
   dst_km: ->
-    @dst * AU/scale
+    @dst * @AU/@scale
 
 ao = (options) ->
   new AstronomicalObject(options)
