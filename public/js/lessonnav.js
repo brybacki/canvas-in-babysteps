@@ -9,6 +9,10 @@ function $(s) {
         });
     }
 
+    function locationChange(fn) {
+        window.location.href = fn(window.location.href)
+    }
+
     function prev(url) {
         return url.replace(/(\d+)(\.html)$/, function (str, p1, p2) {
             return((Number(p1) - 1) + p2);
@@ -20,9 +24,9 @@ function $(s) {
         var linkText = document.createTextNode(name);
         elm.appendChild(linkText);
         elm.href = '#';
-        elm.onclick = function (e) {
-            window.location.href = fn(window.location.href)
-        };
+        elm.onclick = function(e){
+            locationChange(fn);
+        }
 
         return elm;
     }
