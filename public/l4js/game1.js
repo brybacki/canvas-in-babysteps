@@ -73,19 +73,19 @@ function render(dt) {
     var planets = SolarSystem;
     //should be on set/get
     // change only on new planet... removed planet
-    if (planetLimit > 1 && planetLimit < planets.length) {
-        var max_distance = planets[planetLimit-1].dst_scaled() + 20 + planets[planetLimit-1].radius_scaled();
+    if (planetLimit > 0 && planetLimit <= planets.length) {
+        var max_distance = planets[planetLimit - 1].dst_scaled() + 20 + planets[planetLimit - 1].radius_scaled();
         if (max_distance > canvas.width) {
             ratio = (max_distance / canvas.width);
             console.log("r=" + ratio);
-            AstronomicalObject.scale /= ratio;
+            AstronomicalObject.scale /= (ratio*1.05);
+        }
+
+
+        for (var i = 0; i < planetLimit; i++) {
+            planets[i].draw(ctx, [20, 100]);
         }
     }
-
-    for (var i = 0; i < planetLimit; i++) {
-        planets[i].draw(ctx, [20, 100]);
-    }
-
     ctx.font = '11px Courier New';
     ctx.fillStyle = "gray";
     ctx.fillText('   frame: ' + frame, 10, canvas.height - 45);
