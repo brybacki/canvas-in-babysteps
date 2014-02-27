@@ -4,6 +4,19 @@ var playerSpeed = 200;
 var bulletSpeed = 500;
 var enemySpeed = 100;
 
+//http://jlongster.com/Making-Sprite-based-Games-with-Canvas
+
+var canvas = document.createElement("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = 600;
+canvas.height = 200;
+document.body.appendChild(canvas);
+
+// The main game loop
+var lastTime;
+var frame = 0;
+var running = false;
+
 //state
 function start() {
     running = true;
@@ -16,19 +29,6 @@ function stop() {
 function step() {
     doStep();
 }
-
-//http://jlongster.com/Making-Sprite-based-Games-with-Canvas
-
-var canvas = document.createElement("canvas");
-var ctx = canvas.getContext("2d");
-canvas.width = 320;
-canvas.height = 200;
-document.body.appendChild(canvas);
-
-// The main game loop
-var lastTime;
-var frame = 0;
-var running = false;
 
 function loop() {
     if (!running) return;
@@ -81,6 +81,14 @@ function render() {
     ctx.fillStyle = "black";
     ctx.fillRect(10, 50, 20, 20);
     ctx.fillText("hi" + frame, 10, 80);
+
+    var planets = SolarSystem;
+    for (var i = 0; i< 5; i++){
+
+        ctx.fillStyle = "red";
+        planets[i].draw(ctx, [20,100]);
+
+    }
 
 }
 
